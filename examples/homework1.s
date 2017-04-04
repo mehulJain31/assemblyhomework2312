@@ -6,10 +6,10 @@ main:
     BL  _scanf              @ branch to scanf procedure with return for first variable
     MOV R1, R0              @ move return value R0 to argument register R1
     BL  _prompt2             @ branch to prompt procedure with return
-    BL_scanf2               @ branch to scanf for another variable
+    BL_scanftwo               @ branch to scanf for another variable
     MOV R3,R0               @ move return value R0 to argument register R2
     BL  _prompt3             @ branch to prompt procedure with return
-    BL_scanf3               @ branch to scanf the symbol for calculation
+    BL_scanfthree               @ branch to scanf the symbol for calculation
     MOV R4, R0              @ move return value R0 to argument register R4
     
     
@@ -45,7 +45,7 @@ _prompt2:
     SWI 0                   @ execute syscall
     MOV PC, LR              @ return
     
-_scanf2:
+_scanftwo:
     PUSH {LR}               @ store LR since scanf call overwrites
     SUB SP, SP, #4          @ make room on stack
     LDR R0, =format_str     @ R0 contains address of format string
@@ -64,7 +64,7 @@ _prompt3:
     SWI 0                   @ execute syscall
     MOV PC, LR              @ return
 
-_scanf3:
+_scanfthree:
 
     PUSH {LR}               @ store LR since scanf call overwrites
     SUB SP, SP, #4          @ make room on stack
