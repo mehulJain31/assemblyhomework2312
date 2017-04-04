@@ -7,10 +7,7 @@ main:
     MOV R1, R0              @ move return value R0 to argument register R1
     BL _scanf               @ branch to scanf second variable
     MOV R2,R0               @ move return value R0 to argument register R2
-    BL  _printf             @ branch to print procedure with return
-    
-   
-
+ 
 
 _prompt:
     MOV R7, #4              @ write syscall, 4
@@ -20,13 +17,7 @@ _prompt:
     SWI 0                   @ execute syscall
     MOV PC, LR              @ return
        
-_printf:
-    MOV R4, LR              @ store LR since printf call overwrites
-    LDR R0, =printf_str     @ R0 contains formatted string address
-    MOV R1, R1              @ R1 contains printf argument (redundant line)
-    MOV R2,R2
-    BL printf               @ call printf
-    MOV PC, R4              @ return
+
     
 _scanf:
     PUSH {LR}                @ store LR since scanf call overwrites
