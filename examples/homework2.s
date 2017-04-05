@@ -75,6 +75,6 @@ _printf:
 .data
 format_str:     .asciz      "%d"
 prompt_str1:     .asciz      "Type the first number: "
-prompt_str2:    .asciz       "\nType he second number : "
+prompt_str2:    .asciz       "Type the second number : "
 printf_str:     .asciz       "\nThe number entered was: %d\n"
 exit_str:     .ascii         "Terminating Program\n"
