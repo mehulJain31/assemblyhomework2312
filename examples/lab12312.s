@@ -14,7 +14,7 @@ main:
     
     BL  _prompt3             @ branch to printf procedure with return
     BL  _getchar            @ branch to scanf procedure with return
-    MOV R3, R0              @ move return value R0 to argument register R1
+    MOV R1, R0              @ move return value R0 to argument register R1
     BL  _compare            @ check the scanf input
  
  
@@ -84,7 +84,7 @@ _prompt3:
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
     MOV R2, #23             @ print string length
-    LDR R3, =prompt_str3     @ string at label prompt_str:
+    LDR R1, =prompt_str3     @ string at label prompt_str:
     SWI 0                   @ execute syscall
     MOV PC, LR              @ return
    
@@ -92,14 +92,14 @@ _getchar:
     MOV R7, #3              @ write syscall, 3
     MOV R0, #0              @ input stream from monitor, 0
     MOV R2, #1              @ read a single character
-    LDR R3, =read_char      @ store the character in data memory
+    LDR R1, =read_char      @ store the character in data memory
     SWI 0                   @ execute the system call
     LDR R0, [R1]            @ move the character to the return register
     AND R0, #0xFF           @ mask out all but the lowest 8 bits
     MOV PC, LR              @ return
  
 _compare:
-    CMP R3, #'+'            @ compare against the constant char '+'
+    CMP R1, #'+'            @ compare against the constant char '+'
     BEQ _correct            @ branch to equal handler
     BNE _incorrect          @ branch to not equal handler
  
