@@ -11,13 +11,6 @@ main:
     BL _scanf2               @ branch to scanf for another variable
     MOV R1,R0               @ move return value R0 to argument register R2
     BL _printf
-    
-    BL  _prompt3             @ branch to prompt procedure with return
-    BL _scanf3               @ branch to scanf the symbol for calculation
-    MOV R1, R0              @ move return value R0 to argument register R4
-    Bl _printf
-    
-    
    
 @no exit needed as per requirements
 
@@ -49,37 +42,7 @@ _prompt2:
     LDR R1, =prompt_str1     @ string at label prompt_str:
     SWI 0                   @ execute syscall
     MOV PC, LR              @ return
-    
-_scanf2:
-    PUSH {LR}               @ store LR since scanf call overwrites
-    SUB SP, SP, #4          @ make room on stack
-    LDR R0, =format_str     @ R0 contains address of format string
-    MOV R1, SP              @ move SP to R1 to store entry on stack
-    BL scanf                @ call scanf
-    LDR R0, [SP]            @ load value at SP into R0
-    ADD SP, SP, #4          @ restore the stack pointer
-    POP {PC}                @ return
-   
-
-_prompt3:
-    MOV R7, #4              @ write syscall, 4
-    MOV R0, #1              @ output stream to monitor, 1
-    MOV R2, #31             @ print string length
-    LDR R1, =symbol_input   @ string at label prompt_str:
-    SWI 0                   @ execute syscall
-    MOV PC, LR              @ return
-
-_scanf3:
-
-    PUSH {LR}               @ store LR since scanf call overwrites
-    SUB SP, SP, #4          @ make room on stack
-    LDR R0, =format_str     @ R0 contains address of format string
-    MOV R1, SP              @ move SP to R1 to store entry on stack
-    BL scanf                @ call scanf
-    LDR R0, [SP]            @ load value at SP into R0
-    ADD SP, SP, #4          @ restore the stack pointer
-    POP {PC}                @ return
-    
+       
 _printf:
    _printf:
     MOV R4, LR              @ store LR since printf call overwrites
