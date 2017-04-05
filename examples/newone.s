@@ -19,7 +19,7 @@ main:
   ldr R0,=output   @print the input taken
   bl printf        @ print it
   
-  ldr R0=prompt
+  ldr R0,=prompt
   bl printf
   
   ldr R0,=format
