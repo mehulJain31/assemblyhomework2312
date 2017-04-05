@@ -25,7 +25,7 @@ main:
   
   .data
   prompt : .asciz ">"
-  format : "%d"
+  format : .asciz  "%d"
   num : .int 0
   output : .asciz "Your input: %d\n"
   
