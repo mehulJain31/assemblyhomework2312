@@ -10,7 +10,7 @@ main:
     BL  _prompt2             @ branch to prompt procedure with return
     BL _scanf2               @ branch to scanf for another variable
     MOV R1,R0               @ move return value R0 to argument register R2
-    BL _printf
+
     
     B   _exit               @ branch to exit procedure with no return
    
@@ -64,13 +64,7 @@ _scanf1:
     POP {PC}                @ return
 
        
-_printf:
-   _printf:
-    MOV R4, LR              @ store LR since printf call overwrites
-    LDR R0, =printf_str     @ R0 contains formatted string address
-    MOV R1, R1              @ R1 contains printf argument (redundant line)
-    BL printf               @ call printf
-    MOV PC, R4              @ return    
+  
 
 .data
 format_str:     .asciz      "%d"
