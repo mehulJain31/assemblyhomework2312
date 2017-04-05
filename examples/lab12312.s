@@ -32,7 +32,7 @@ _exit:
 _prompt1:
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
-    MOV R2, #15             @ print string length
+    MOV R2, #10             @ print string length
     LDR R1, =prompt_str     @ string at label prompt_str:
     SWI 0                   @ execute syscall
     MOV PC, LR              @ return
@@ -57,7 +57,7 @@ _scanf1:
  _prompt2:
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
-    MOV R2, #15             @ print string length
+    MOV R2, #10             @ print string length
     LDR R1, =prompt_str2     @ string at label prompt_str:
     SWI 0                   @ execute syscall
     MOV PC, LR              @ return
