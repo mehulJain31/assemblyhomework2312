@@ -41,6 +41,6 @@ main:
   prompt : .asciz ">"
   format : .asciz  "%d"
   num : .int 0
-  num1: .int 0
+  num2: .int 0
   output : .asciz "Your input: %d\n"
   
