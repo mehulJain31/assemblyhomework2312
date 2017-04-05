@@ -11,7 +11,7 @@ main:
   bl printf
   
   ldr R0,=format   @take input by %d
-  ldr R1,=num1      @ take input of the first variable in R1
+  ldr R9,=num1      @ take input of the first variable in R1
   bl scanf         @ take the input
   
   
@@ -21,7 +21,7 @@ main:
   bl printf
   
   ldr R0,=format
-  ldr R1,=num2
+  ldr R8,=num2
   bl scanf
   
   pop  {ip,pc}
