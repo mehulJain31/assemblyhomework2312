@@ -11,8 +11,18 @@ main:
     BL _scanf2               @ branch to scanf for another variable
     MOV R1,R0               @ move return value R0 to argument register R2
     BL _printf
+    
+    B   _exit               @ branch to exit procedure with no return
    
-@no exit needed as per requirements
+_exit:  
+    MOV R7, #4              @ write syscall, 4
+    MOV R0, #1              @ output stream to monitor, 1
+    MOV R2, #21             @ print string length
+    LDR R1, =exit_str       @ string at label exit_str:
+    SWI 0                   @ execute syscall
+    MOV R7, #1              @ terminate syscall, 1
+    SWI 0                   @ execute syscall
+
 
 _prompt1:
     MOV R7, #4              @ write syscall, 4
