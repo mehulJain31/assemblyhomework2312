@@ -2,19 +2,19 @@
 .func main
    
 main:
-    BL  _prompt             @ branch to prompt procedure with return
-    BL  _scanf              @ branch to scanf procedure with return for first variable
+    BL  _prompt1             @ branch to prompt procedure with return
+    BL  _scanf1              @ branch to scanf procedure with return for first variable
     MOV R1, R0              @ move return value R0 to argument register R1
     BL _printf                
     
-    BL  _prompt             @ branch to prompt procedure with return
-    BL _scanf               @ branch to scanf for another variable
+    BL  _prompt2             @ branch to prompt procedure with return
+    BL _scanf2               @ branch to scanf for another variable
     MOV R1,R0               @ move return value R0 to argument register R2
     BL _printf
    
 @no exit needed as per requirements
 
-_prompt:
+_prompt1:
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
     MOV R2, #31             @ print string length
@@ -22,10 +22,17 @@ _prompt:
     SWI 0                   @ execute syscall
     MOV PC, LR              @ return
        
-@no need for printf
+_prompt2:
+    MOV R7, #4              @ write syscall, 4
+    MOV R0, #1              @ output stream to monitor, 1
+    MOV R2, #31             @ print string length
+    LDR R1, =prompt_str     @ string at label prompt_str:
+    SWI 0                   @ execute syscall
+    MOV PC, LR              @ return
+
 
     
-_scanf:
+_scanf1:
     PUSH {LR}               @ store LR since scanf call overwrites
     SUB SP, SP, #4          @ make room on stack
     LDR R0, =format_str     @ R0 contains address of format string
@@ -35,6 +42,16 @@ _scanf:
     ADD SP, SP, #4          @ restore the stack pointer
     POP {PC}                @ return
     
+    
+ _scanf2:
+    PUSH {LR}               @ store LR since scanf call overwrites
+    SUB SP, SP, #4          @ make room on stack
+    LDR R0, =format_str     @ R0 contains address of format string
+    MOV R1, SP              @ move SP to R1 to store entry on stack
+    BL scanf                @ call scanf
+    LDR R0, [SP]            @ load value at SP into R0
+    ADD SP, SP, #4          @ restore the stack pointer
+    POP {PC}                @ return
 
        
 _printf:
