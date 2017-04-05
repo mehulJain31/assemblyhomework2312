@@ -21,7 +21,7 @@ main:
   bl printf
   
   ldr R0,=format
-  ldr R2,=num1
+  ldr R1,=num2
   bl scanf
   
   pop  {ip,pc}
