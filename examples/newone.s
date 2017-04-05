@@ -6,6 +6,7 @@
 main:
   
   push  {ip,lr}
+  
   ldr R0, =prompt   @print the prompt to take the first input
   bl printf
   
@@ -20,7 +21,7 @@ main:
   bl printf
   
   ldr R0,=format
-  ldr R2,=num2
+  ldr R2,=num1
   bl scanf
   
   pop  {ip,pc}
