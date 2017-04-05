@@ -118,11 +118,11 @@ _incorrect:
 
 .data
 format_str:     .asciz      "%d"
-prompt_str:     .asciz      "Type a number and press enter: "
-prompt_str2:     .asciz      "Type a 2nd number and press enter: "
-printf_str:     .asciz      "The number entered was: %d\n"
+prompt_str:     .asciz      "1st number: "
+prompt_str2:     .asciz      "2nd number: "
+printf_str:     .asciz      "The number was: %d\n"
 exit_str:       .ascii      "Terminating program.\n"
 read_char:      .ascii      " "
 prompt_str3:     .ascii      "Enter the + character: "
-equal_str:      .asciz      "CORRECT \n"
+equal_str:      .asciz       "CORRECT \n"
 nequal_str:     .asciz      "INCORRECT: %c \n"
