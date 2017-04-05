@@ -8,14 +8,14 @@ main:
     BL _printf                
     
     BL  _prompt2             @ branch to prompt procedure with return
-    BL_scanf2               @ branch to scanf for another variable
+    BL _scanf2               @ branch to scanf for another variable
     MOV R1,R0               @ move return value R0 to argument register R2
-    BL_printf
+    BL _printf
     
     BL  _prompt3             @ branch to prompt procedure with return
-    BL_scanf3               @ branch to scanf the symbol for calculation
+    BL _scanf3               @ branch to scanf the symbol for calculation
     MOV R1, R0              @ move return value R0 to argument register R4
-    Bl_printf
+    Bl _printf
     
     
    
