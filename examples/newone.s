@@ -19,16 +19,16 @@ main:
   ldr R0,=output   @print the input taken
   bl printf        @ print it
   
-  ldr R0,=prompt
+  ldr R3,=prompt
   bl printf
   
-  ldr R0,=format
+  ldr R3,=format
   ldr R2,=num2
   bl scanf
   
   ldr R2,=num2
   ldr R2,[R2]
-  ldr R0,=output
+  ldr R3,=output
   bl printf
   
   
