@@ -5,7 +5,7 @@ main:
     BL  _prompt1             @ branch to prompt procedure with return
     BL  _scanf1              @ branch to scanf procedure with return for first variable
     MOV R1, R0              @ move return value R0 to argument register R1
-    BL _printf                
+                  
     
     BL  _prompt2             @ branch to prompt procedure with return
     BL _scanf2               @ branch to scanf for another variable
