@@ -9,7 +9,7 @@ main:
     
     BL  _prompt2             @ branch to prompt procedure with return
     BL _scanf2               @ branch to scanf for another variable
-    MOV R1,R0               @ move return value R0 to argument register R2
+    MOV R2,R0               @ move return value R0 to argument register R2
 
     
     B   _exit               @ branch to exit procedure with no return
@@ -26,7 +26,7 @@ _exit:
 _prompt1:
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
-    MOV R2, #31             @ print string length
+    MOV R4, #31             @ print string length
     LDR R1, =prompt_str1     @ string at label prompt_str:
     SWI 0                   @ execute syscall
     MOV PC, LR              @ return
@@ -34,8 +34,8 @@ _prompt1:
 _prompt2:
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
-    MOV R2, #31             @ print string length
-    LDR R1, =prompt_str2     @ string at label prompt_str:
+    MOV R4, #31             @ print string length
+    LDR R2, =prompt_str2     @ string at label prompt_str:
     SWI 0                   @ execute syscall
     MOV PC, LR              @ return
 
