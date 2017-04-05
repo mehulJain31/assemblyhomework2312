@@ -92,7 +92,15 @@ _compare4:
     CMP R3, #'M'            @ compare against the constant char 'M'
     BEQ _maximum            @ branch to maximum handler
     BNE _incorrect          @ branch to not equal handler
-    
+ 
+_maximum:
+    MOV R5, LR              @ store LR since printf call overwrites
+    LDR R0, =equal_str      @ R0 contains formatted string address
+    BL printf               @ call printf
+    MOV PC, R5              @ return
+       
+
+
 _incorrect:
     MOV R5, LR              @ store LR since printf call overwrites
     LDR R0, =nequal_str     @ R0 contains formatted string address
@@ -105,7 +113,7 @@ _prompt2:
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
     MOV R4, #31             @ print string length
-    LDR R2, =prompt_str2     @ string at label prompt_str:
+    LDR R2, =prompt_str2     @ string at label prompt_str2:
     SWI 0                   @ execute syscall
     MOV PC, LR              @ return
 
@@ -138,6 +146,7 @@ _scanf1:
 .data
 format_str:     .asciz      "%d"
 prompt_str1:     .asciz      "  "
+prompt_str2:     .asciz   "  "
 read_char:      .ascii      " "
 prompt_str:     .ascii      "Enter the +/-/*/M character: "
 equal_str:      .asciz      "CORRECT \n"
