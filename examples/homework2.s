@@ -141,6 +141,6 @@ prompt_str1:     .asciz      "  "
 read_char:      .ascii      " "
 prompt_str:     .ascii      "Enter the +/-/*/M character: "
 equal_str:      .asciz      "CORRECT \n"
-nequal_str:     .asciz      "INCORRECT: %c \n"ompt_str2:    .asciz       "  "
+nequal_str:     .asciz      "INCORRECT: %c \n" 
 
 
