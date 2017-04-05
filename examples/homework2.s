@@ -58,7 +58,7 @@ _prompt:
   _compare1:
     CMP R3, #'+'            @ compare against the constant char '+'
     BEQ _add                @ branch to addition handler
-    BNE _-compare2          @ branch to subtract check handler
+    BNE _compare2          @ branch to subtract check handler
     
     _add:
     MOV R5, LR              @ store LR since printf call overwrites
@@ -66,10 +66,10 @@ _prompt:
     BL printf               @ call printf
     MOV PC, R5              @ return
 
-_-compare2:
+_compare2:
     CMP R3, #'-'            @ compare against the constant char '-'
     BEQ _subtract            @ branch to subtract handler
-    BNE _*compare3             @ branch to multiply check 
+    BNE _compare3             @ branch to multiply check 
     
  _subtract:
     MOV R5, LR              @ store LR since printf call overwrites
@@ -77,10 +77,10 @@ _-compare2:
     BL printf               @ call printf
     MOV PC, R5              @ return
     
-  _-compare3:
+  _compare3:
     CMP R3, #'*'            @ compare against the constant char '*'
     BEQ _multiply            @ branch to multiply handler
-    BNE _*compare4            @ branch to multiply check 
+    BNE _compare4            @ branch to multiply check 
     
  _multiply:
     MOV R5, LR              @ store LR since printf call overwrites
@@ -88,7 +88,7 @@ _-compare2:
     BL printf               @ call printf
     MOV PC, R5              @ return
     
-_-compare4:
+_compare4:
     CMP R3, #'M'            @ compare against the constant char 'M'
     BEQ _maximum            @ branch to maximum handler
     BNE _incorrect          @ branch to not equal handler
