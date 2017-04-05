@@ -28,7 +28,7 @@ _prompt1:
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
     MOV R2, #31             @ print string length
-    LDR R1, =prompt_str     @ string at label prompt_str:
+    LDR R1, =prompt_str1     @ string at label prompt_str:
     SWI 0                   @ execute syscall
     MOV PC, LR              @ return
        
@@ -36,7 +36,7 @@ _prompt2:
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
     MOV R2, #31             @ print string length
-    LDR R1, =prompt_str     @ string at label prompt_str:
+    LDR R1, =prompt_str2     @ string at label prompt_str:
     SWI 0                   @ execute syscall
     MOV PC, LR              @ return
 
@@ -74,7 +74,7 @@ _printf:
 
 .data
 format_str:     .asciz      "%d"
-prompt_str:     .asciz      "Type the first number: "
-prompt_str1:    .asciz      "\nType the second : "
+prompt_str1:     .asciz      "Type the first number: "
+prompt_str2:    .asciz      "\nType the second number : "
 printf_str:     .asciz      "\nThe number entered was: %d\n"
 exit_str:     .ascii         "Terminating Program\n"
