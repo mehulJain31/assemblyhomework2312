@@ -40,8 +40,8 @@ _scanf:
     @ BNE _incorrect           @ branch to not equal handle
     
     _add:
-     ADD R0,R9,R11
-     MOV R1,R0      @save the answer in a procedure return argument
+     ADD R1,R9,R11  @ add the variable and store in R0
+     @MOV R1,R0      @save the answer in a procedure return argument
      BL  printf     @print the result
      
      
