@@ -11,7 +11,7 @@ main:
    @BL _compare   @compare function for determining what function to use
    @MOV R1,R0    @save the answer in a procedure return argument
    @BL _printf    @print the result
-   B main       @loop until the user wants
+          @loop until the user wants
    
    
   
