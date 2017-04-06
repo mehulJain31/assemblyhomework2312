@@ -73,19 +73,12 @@ _scanf:
       _maximum:
       PUSH {LR}      @open stack
       CMP R9,R11   @compare the values
-      ble one
-      ble two
+      MOVHI R0,R9
+      MOVHI R0,R11
+     
       POP {PC}
       
-      one:
-      PUSH {LR}       @open stack
-      MOV R0,R11
-      POP {PC}
-      
-       two:
-       PUSH {LR}       @open stack
-      MOV R0,R9
-      POP {PC}
+     
          
       
      _print:
