@@ -40,7 +40,7 @@ _scanf:
     _compare:
        PUSH {LR}            @stack manipulation
        CMP R10,#'+'         @compare for +
-       BEQ _addition             @ call the function
+       BEQ _addition        @ call the function
        
        CMP R10,#'-'
        BEQ _subtract
@@ -72,7 +72,11 @@ _scanf:
       
       _maximum:
       PUSH{LR}      @open stack
-      slt R0,R9,R11   @compare the values
+      CMP R9,R11   @compare the values
+      JGE L1
+      JGE L2
+      L1:  MOV R0,R9
+      L2:  MOV R0,R11
       
       POP{PC}
       
