@@ -68,11 +68,12 @@ _scanf:
       POP {PC}
       
       _print:
-     MOV R4, LR              @ store LR since printf call overwrites
-     LDR R0, =printf_str     @ R0 contains formatted string address
-     MOV R2, R2              @ R1 contains printf argument (redundant line)
-     BL printf               @ call printf
-     MOV PC, R4              @ return
+     PUSH {LR}               @ store the return address
+    LDR R0, =printf_str     @ R0 contains formatted string address
+    @MOV R1, R1              @ R1 contains printf argument 1 (redundant line)
+    @MOV R2, R2              @ R2 contains printf argument 2 (redundant line)
+    BL printf               @ call printf
+    POP {PC}                @ restore the stack pointer and return
       
       
       
