@@ -1,37 +1,48 @@
-.text
 .global main
-.extern printf
-.extern scanf
+.func main
 
 main:
-  
-  push  {ip,lr}
-  
-  ldr R0, =prompt   @print the prompt to take the first input
-  bl printf
-  
-  ldr R0,=format   @take input by %
-  ldr R1,=num1      @ take input of the first variable in R1
-  bl scanf         @ take the input
+   BL _scanf    @take the first input
+   MOV R9,R0    @first variable
+   BL_getchar   @take the symbol input
+   MOV R10,R0   @ symbol in R9
+   BL_scanf     @call scanf for second input
+   MOV R10,R0   @second variable
+   @BL_compare   @compare function for determining what function to use
+   @MOV R1,R0    @save the answer in a procedure return argument
+   @BL_printf    @print the result
+   @B main       @loop until the user wants
+   
+   
   
   
 
 
-  ldr R0,=prompt
-  bl printf
-  
-  ldr R0,=format
-  MOV R2,#4
-  ldr R3,=num2
-  bl scanf
-  
-  pop  {ip,pc}
-  
-  
-  
-  .data
-  prompt : .asciz ">"
-  format : .asciz  "%d"
-  num1 : .int 0
-  num2: .int 0
-  
+
+
+_scanf:
+    MOV R4, LR                          @ store LR since printf call overwrites
+	 SUB SP, SP, #4                       @ make room on stack
+	 LDR R0, =format_str                  @ R0 contains address of format string
+	 MOV R1, SP                           @ move SP to R1 to store entry on stack 
+	 BL scanf                             @ call scanf
+	 LDR R0, [SP]                         @ load value at SP into R0
+	 ADD SP, SP, #4                       @ restore the stack pointer
+	 MOV PC, R4                           @ return
+   
+  _getchar:
+    MOV R7, #3              @ write syscall, 3
+    MOV R0, #0              @ input stream from monitor, 0
+    MOV R2, #1              @ read a single character
+    LDR R1, =read_char      @ store the character in data memory
+    SWI 0                   @ execute the system call
+    LDR R0, [R1]            @ move the character to the return register
+    AND R0, #0xFF           @ mask out all but the lowest 8 bits
+    MOV PC, LR              @ return
+    
+    
+    
+    .data
+    format_str:	.asciz	"%d"
+    read_char:	.ascii	" "
+    printf_str:	.asciz	"%d\n"
