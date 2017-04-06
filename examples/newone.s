@@ -10,7 +10,7 @@ main:
    BL _scanf      @call scanf for second input
    MOV R11,R0     @second variable in R11
    BL _compare    @compare function for determining what function to use
-   MOV R2,R0      @move the temporary R0 to R2 for printing the result
+   MOV R1,R0      @move the temporary R0 to R1 for printing the result
    BL _print      @print the answer
    BL main        @loop until the user wants
    
@@ -67,8 +67,8 @@ _scanf:
       MUL R0,R9,R11   @ multiply them
       POP {PC}
       
-      _print:
-     PUSH {LR}               @ store the return address
+     _print:
+    PUSH {LR}               @ store the return address
     LDR R0, =printf_str     @ R0 contains formatted string address
     MOV R1, R1              @ R1 contains printf argument 1 (redundant line)
     @MOV R2, R2              @ R2 contains printf argument 2 (redundant line)
@@ -76,15 +76,8 @@ _scanf:
     POP {PC}                @ restore the stack pointer and return
       
       
-      
-      
      
-     
-     
-    
-    
-    
     .data
     format_str:	.asciz	"%d"
-    read_char:	.ascii	" "
-    printf_str:	.asciz	"%d\n"
+    read_char:	   .ascii	" "
+    printf_str:   .asciz	"%d\n"
