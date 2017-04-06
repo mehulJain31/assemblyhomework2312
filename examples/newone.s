@@ -2,24 +2,18 @@
 .func main
 
 main:
-   BL _scanf    @take the first input
-   MOV R9,R0    @first variable
-   BL _getchar   @take the symbol input
-   MOV R10,R0   @ symbol in R10
-   BL _scanf     @call scanf for second input
-   MOV R11,R0   @second variable in R11
-   @BL _compare   @compare function for determining what function to use
-   @MOV R1,R0    @save the answer in a procedure return argument
-   @BL _printf    @print the result
-          @loop until the user wants
+   BL _scanf      @take the first input
+   MOV R9,R0      @first variable in R9
+   BL _getchar    @take the symbol input
+   MOV R10,R0     @ symbol in R10
+   BL _scanf      @call scanf for second input
+   MOV R11,R0     @second variable in R11
+   BL _compare    @compare function for determining what function to use
+   BL main        @loop until the user wants
    
    
   
-  
-
-
-
-@Used MOV from the professor's printf function rather that push and pop from the scanf function
+ 
 _scanf:
     PUSH {LR}                          @ store LR since printf call overwrites
     SUB SP, SP, #4                       @ make room on stack
@@ -39,6 +33,18 @@ _scanf:
     LDR R0, [R1]            @ move the character to the return register
     AND R0, #0xFF           @ mask out all but the lowest 8 bits
     MOV PC, LR              @ return
+    
+    _compare:
+    CMP R10, #'+'            @ compare against the constant char '@'
+    BEQ _add                 @ branch to equal handler
+    BNE _incorrect           @ branch to not equal handle
+    
+    _add:
+     ADD R0,R9,R11
+     MOV R1,R0      @save the answer in a procedure return argument
+     BL  printf     @print the result
+     
+     
     
     
     
