@@ -31,7 +31,7 @@ _scanf:
     MOV R7, #3              @ write syscall, 3
     MOV R0, #0              @ input stream from monitor, 0
     MOV R2, #1              @ read a single character
-    LDR R1, =read_char      @ store the character in data memory
+    LDR R1, =read_symbol      @ store the character in data memory
     SWI 0                   @ execute the system call
     LDR R0, [R1]            @ move the character to the return register
     AND R0, #0xFF           @ mask out all but the lowest 8 bits
@@ -40,44 +40,51 @@ _scanf:
     _compare:
        PUSH {LR}            @stack manipulation
        CMP R10,#'+'         @compare for +
-       BEQ _add             @ call the function
+       BEQ _addition             @ call the function
        
        CMP R10,#'-'
-       BEQ _sub
+       BEQ _subtract
        
        CMP R10,#'*'
-       BEQ _prod
+       BEQ _product
+       
+       BEQ _maximum
        
        POP {PC}
        
-    _add:
+    _addition:
       
       PUSH {LR}          @open stack
       ADD R0,R9,R11      @ Add them
       POP {PC}
       
-     _sub:
+     _subtract:
       
       PUSH {LR}         @open stack
       SUB R0,R9,R11     @ subtract them
       POP {PC}
       
-      _prod:
+      _product:
       PUSH {LR}       @open stack
       MUL R0,R9,R11   @ multiply them
       POP {PC}
+      
+      _maximum:
+      PUSH{LR}      @open stack
+      slt R0,R9,R11   @compare the values
+      
+      POP{PC}
       
      _print:
     PUSH {LR}               @ store the return address
     LDR R0, =printf_str     @ R0 contains formatted string address
     MOV R1, R1              @ R1 contains printf argument 1 (redundant line)
-    @MOV R2, R2              @ R2 contains printf argument 2 (redundant line)
     BL printf               @ call printf
     POP {PC}                @ restore the stack pointer and return
       
       
      
     .data
-    format_str:	.asciz	"%d"
-    read_char:	   .ascii	" "
-    printf_str:   .asciz	"%d\n"
+    format_str:	   .asciz	"%d"
+    read_symbol:	   .ascii	" "
+    printf_str:      .asciz	"%d\n"
