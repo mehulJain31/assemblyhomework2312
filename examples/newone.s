@@ -5,13 +5,13 @@ main:
    BL _scanf    @take the first input
    MOV R9,R0    @first variable
    BL _getchar   @take the symbol input
-   MOV R10,R0   @ symbol in R9
+   MOV R10,R0   @ symbol in R10
    BL _scanf     @call scanf for second input
-   MOV R10,R0   @second variable
+   MOV R11,R0   @second variable in R11
    @BL _compare   @compare function for determining what function to use
    @MOV R1,R0    @save the answer in a procedure return argument
    @BL _printf    @print the result
-   @B main       @loop until the user wants
+   B main       @loop until the user wants
    
    
   
@@ -22,13 +22,13 @@ main:
 
 _scanf:
     MOV R4, LR                                @ store LR since printf call overwrites
-	 SUB SP, SP, #4                       @ make room on stack
-	 LDR R0, =format_str                  @ R0 contains address of format string
-	 MOV R1, SP                           @ move SP to R1 to store entry on stack 
-	 BL scanf                             @ call scanf
-	 LDR R0, [SP]                         @ load value at SP into R0
-	 ADD SP, SP, #4                       @ restore the stack pointer
-	 MOV PC, R4                           @ return
+    SUB SP, SP, #4                       @ make room on stack
+    LDR R0, =format_str                  @ R0 contains address of format string 
+    MOV R1, SP                           @ move SP to R1 to store entry on stack 
+    BL scanf                             @ call scanf
+    LDR R0, [SP]                         @ load value at SP into R0
+    ADD SP, SP, #4                       @ restore the stack pointer
+    MOV PC, R4                           @ return
    
   _getchar:
     MOV R7, #3              @ write syscall, 3
