@@ -73,8 +73,8 @@ _scanf:
       _maximum:
       PUSH {LR}      @open stack
       CMP R9,R11   @compare the values
-      JGE L1
-      JGE L2
+      JG L1
+      JG L2
       L1:  MOV R0,R9
       L2:  MOV R0,R11
       
