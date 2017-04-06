@@ -22,7 +22,7 @@ main:
   
   ldr R0,=format
   MOV R2,#4
-  ldr R1,=num2
+  ldr R3,=num2
   bl scanf
   
   pop  {ip,pc}
