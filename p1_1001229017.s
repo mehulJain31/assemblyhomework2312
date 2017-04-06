@@ -73,14 +73,11 @@ _scanf:
       _maximum:
       PUSH {LR}      @open stack
       CMP R9,R11     @compare the user values
-      MOVGT R11,R9
-      MOV R0,R11
-      
+      MOVGT R11,R9   @ assign R11, R9 if R9>R11
+      MOV R0,R11     @ Move the greater number to R0  for printing the result
       POP {PC}
       
      
-         
-      
      _print:
     PUSH {LR}               @ store the return address
     LDR R0, =printf_str     @ R0 contains formatted string address
