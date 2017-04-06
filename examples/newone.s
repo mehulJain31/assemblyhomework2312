@@ -38,9 +38,9 @@ _scanf:
     MOV PC, LR              @ return
     
     _compare:
-       PUSH {LR} 
-       CMP R10,#'+'
-       BEQ _add
+       PUSH {LR}            @stack manipulation
+       CMP R10,#'+'         @compare for +
+       BEQ _add             @ call the function
        
        CMP R10,#'-'
        BEQ _sub
@@ -52,25 +52,25 @@ _scanf:
        
     _add:
       
-      PUSH {LR}
-      ADD R0,R9,R11
+      PUSH {LR}          @open stack
+      ADD R0,R9,R11      @ Add them
       POP {PC}
       
      _sub:
       
-      PUSH {LR}
-      SUB R0,R9,R11
+      PUSH {LR}         @open stack
+      SUB R0,R9,R11     @ subtract them
       POP {PC}
       
       _prod:
-      PUSH {LR}
-      MUL R0,R9,R11
+      PUSH {LR}       @open stack
+      MUL R0,R9,R11   @ multiply them
       POP {PC}
       
       _print:
      PUSH {LR}               @ store the return address
     LDR R0, =printf_str     @ R0 contains formatted string address
-    @MOV R1, R1              @ R1 contains printf argument 1 (redundant line)
+    MOV R1, R1              @ R1 contains printf argument 1 (redundant line)
     @MOV R2, R2              @ R2 contains printf argument 2 (redundant line)
     BL printf               @ call printf
     POP {PC}                @ restore the stack pointer and return
