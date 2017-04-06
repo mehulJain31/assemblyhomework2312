@@ -37,7 +37,7 @@ _scanf:
     _compare:
     CMP R10, #'+'            @ compare against the constant char '@'
     BEQ _add                 @ branch to equal handler
-    BNE _incorrect           @ branch to not equal handle
+    @ BNE _incorrect           @ branch to not equal handle
     
     _add:
      ADD R0,R9,R11
