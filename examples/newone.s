@@ -1,5 +1,6 @@
 .global main
 .func main
+extern printf
 
 main:
    BL _scanf      @take the first input
@@ -9,6 +10,8 @@ main:
    BL _scanf      @call scanf for second input
    MOV R11,R0     @second variable in R11
    BL _compare    @compare function for determining what function to use
+   MOV R2,R0      @move the temporary R0 to R2 for printing the result
+   BL _print      @print the answer
    BL main        @loop until the user wants
    
    
@@ -35,15 +38,46 @@ _scanf:
     MOV PC, LR              @ return
     
     _compare:
-    CMP R10, #'+'            @ compare against the constant char '@'
-    BEQ _add                 @ branch to equal handler
-    @ BNE _          @ branch to not equal handle
-    
+       PUSH {LR} 
+       CMP R10,#'+'
+       BEQ _add
+       
+       CMP R10,#'-'
+       BEQ _sub
+       
+       CMP R10,#'*'
+       BEQ _prod
+       
+       POP {PC}
+       
     _add:
-     add R0,R9,R11   @ add the variable and store in R0
-     MOV R1,R0      @save the answer in a procedure return argument
-     LDR R1,=printf_str
-     BL  printf      @print the result
+      
+      PUSH {LR}
+      ADD R0,R9,R11
+      POP {PC}
+      
+     _sub:
+      
+      PUSH {LR}
+      SUB R0,R9,R11
+      POP {PC}
+      
+      _prod:
+      PUSH {LR}
+      MUL R0,R9,R11
+      POP {PC}
+      
+      _print:
+     MOV R4, LR              @ store LR since printf call overwrites
+     LDR R0, =printf_str     @ R0 contains formatted string address
+     MOV R2, R2              @ R1 contains printf argument (redundant line)
+     BL printf               @ call printf
+     MOV PC, R4              @ return
+      
+      
+      
+      
+     
      
      
     
