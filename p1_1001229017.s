@@ -74,7 +74,7 @@ _scanf:
       PUSH {LR}      @open stack
       CMP R9,R11     @compare the user values
       MOVGT R11,R9
-      MOV R11
+      MOV R0,R11
       
       POP {PC}
       
