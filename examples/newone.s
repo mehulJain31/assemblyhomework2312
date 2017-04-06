@@ -1,6 +1,6 @@
 .global main
 .func main
-extern printf
+
 
 main:
    BL _scanf      @take the first input
