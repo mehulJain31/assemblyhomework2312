@@ -72,9 +72,9 @@ _scanf:
       
       _maximum:
       PUSH {LR}      @open stack
-      MOVGT R9,R11   @compare the values
-      MOV R0,R9
-     
+      CMP R9,R11     @compare the user values
+      MOVGT R9,R11   @Move greater value to R9
+      MOV R0,R9      @ move the value to R0
       POP {PC}
       
      
