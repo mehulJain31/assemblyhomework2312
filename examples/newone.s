@@ -48,6 +48,7 @@ _scanf:
        CMP R10,#'*'
        BEQ _product
        
+       CMP R10,#'M'
        BEQ _maximum
        
        POP {PC}
