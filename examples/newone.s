@@ -71,14 +71,14 @@ _scanf:
       POP {PC}
       
       _maximum:
-      PUSH{LR}      @open stack
+      PUSH {LR}      @open stack
       CMP R9,R11   @compare the values
       JGE L1
       JGE L2
       L1:  MOV R0,R9
       L2:  MOV R0,R11
       
-      POP{PC}
+      POP {PC}
       
      _print:
     PUSH {LR}               @ store the return address
