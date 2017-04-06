@@ -37,12 +37,13 @@ _scanf:
     _compare:
     CMP R10, #'+'            @ compare against the constant char '@'
     BEQ _add                 @ branch to equal handler
-    @ BNE _incorrect           @ branch to not equal handle
+    @ BNE _          @ branch to not equal handle
     
     _add:
-     ADD R1,R9,R11  @ add the variable and store in R0
-     @MOV R1,R0      @save the answer in a procedure return argument
-     BL  printf     @print the result
+     add R0,R9,R11   @ add the variable and store in R0
+     MOV R1,R0      @save the answer in a procedure return argument
+     LDR R1,=printf_str
+     BL  printf      @print the result
      
      
     
