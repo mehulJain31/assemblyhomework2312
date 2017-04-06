@@ -4,13 +4,13 @@
 main:
    BL _scanf    @take the first input
    MOV R9,R0    @first variable
-   BL_getchar   @take the symbol input
+   BL _getchar   @take the symbol input
    MOV R10,R0   @ symbol in R9
-   BL_scanf     @call scanf for second input
+   BL _scanf     @call scanf for second input
    MOV R10,R0   @second variable
-   @BL_compare   @compare function for determining what function to use
+   @BL _compare   @compare function for determining what function to use
    @MOV R1,R0    @save the answer in a procedure return argument
-   @BL_printf    @print the result
+   @BL _printf    @print the result
    @B main       @loop until the user wants
    
    
@@ -21,7 +21,7 @@ main:
 
 
 _scanf:
-    MOV R4, LR                          @ store LR since printf call overwrites
+    MOV R4, LR                                @ store LR since printf call overwrites
 	 SUB SP, SP, #4                       @ make room on stack
 	 LDR R0, =format_str                  @ R0 contains address of format string
 	 MOV R1, SP                           @ move SP to R1 to store entry on stack 
