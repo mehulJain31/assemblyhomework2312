@@ -78,13 +78,13 @@ _scanf:
       POP {PC}
       
       one:
-       PUSH {LR}       @open stack
-      MOV R0,R9
+      PUSH {LR}       @open stack
+      MOV R0,R11
       POP {PC}
       
        two:
        PUSH {LR}       @open stack
-      MOV R0,R11
+      MOV R0,R9
       POP {PC}
          
       
