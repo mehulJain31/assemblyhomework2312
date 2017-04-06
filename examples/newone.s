@@ -18,7 +18,7 @@ main:
   
  
 _scanf:
-    MOV R4, LR                          @ store LR since printf call overwrites
+    MOV R4, LR                           @ store LR since printf call overwrites
     SUB SP, SP, #4                       @ make room on stack
     LDR R0, =format_str                  @ R0 contains address of format string 
     MOV R1, SP                           @ move SP to R1 to store entry on stack 
