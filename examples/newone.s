@@ -72,9 +72,8 @@ _scanf:
       
       _maximum:
       PUSH {LR}      @open stack
-      CMP R9,R11   @compare the values
-      MOVHI R0,R9
-      MOVHI R0,R11
+      MOVGT R9,R11   @compare the values
+      MOV R0,R9
      
       POP {PC}
       
