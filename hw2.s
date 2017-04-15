@@ -19,7 +19,6 @@ writeloop:
     POP {R0}                @ restore iterator
     ADD R0, R0, #1          @ increment index
     B   writeloop           @ branch to next loop iteration
-
 writedone:
     MOV R0, #0              @ initialze index variable
 
@@ -39,13 +38,31 @@ readloop:
     POP {R2}                @ restore register
     POP {R1}                @ restore register
     POP {R0}                @ restore register
+    CMP R8,R0	             @if R2 < input
+	 MOVLT R8,R0
+	 CMP R2,R0	              @if R3 > input 
+	 MOVGT R2,R0
     ADD R0, R0, #1          @ increment index
     B   readloop            @ branch to next loop iteration
 
 readdone:
+   MOV R1,R2
+	BL _min
+	MOV R1,R8
+	BL _max
     B _exit                 @ exit if done
     
 
+_min:
+	PUSH {LR}
+	LDR R0,=printf_min
+	BL printf
+	POP {PC}
+_max:
+	PUSH {LR}
+	LDR R0, =printf_max
+	BL printf
+	POP {PC}
 _exit:  
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
@@ -79,6 +96,8 @@ _getrand:
 .balign 4
 a:              .skip       40
 printf_str:     .asciz      "a[%d] = %d\n"
+printf_max:     .asciz      "max = %d\n"
+printf_min:     .asciz      "min = %d\n"
 debug_str:
 .asciz "R%-2d   0x%08X  %011d \n"
 exit_str:       .ascii      "Terminating program.\n"
