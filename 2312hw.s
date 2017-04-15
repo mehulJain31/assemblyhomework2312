@@ -20,10 +20,11 @@ writeloop:
    
     POP {R2}                @ restore element address
     STR R0, [R2]            @ write the address of a[i] to a[i]
-    POP  CMP R8,R0	             @if  < input
+    POP  {R0}
+    CMP R8,R0	             @if  < input
     MOVLT R8,R0
     CMP R4,R0	              @if  > input 
-    MOVGT R4,R0{R0}                @ restore iterator
+    MOVGT R4,R0                @ restore iterator
     
     ADD R0, R0, #1          @ increment index
     B   writeloop           @ branch to next loop iteration
