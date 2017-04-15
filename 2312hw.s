@@ -4,8 +4,9 @@
 main:
     BL _seedrand            @ seed random number generator with current time
     MOV R8,#0
-    MOV R4,#999
-   MOV R0, #0              @ initialze index variable
+    MOV R4,#0
+    LSL R4,R4,#4
+    MOV R0, #0              @ initialze index variable
 
 writeloop:
     CMP R0, #10            @ check to see if we are done iterating
