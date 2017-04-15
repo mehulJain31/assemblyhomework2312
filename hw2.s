@@ -4,8 +4,9 @@
 main:
     BL _seedrand            @ seed random number generator with current time
     MOV R0, #0              @ initialze index variable
+
 writeloop:
-    CMP R0, #40            @ check to see if we are done iterating
+    CMP R0, #10            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
     LDR R1, =a              @ get address of a
     LSL R2, R0, #2          @ multiply index*4 to get array offset
@@ -18,10 +19,12 @@ writeloop:
     POP {R0}                @ restore iterator
     ADD R0, R0, #1          @ increment index
     B   writeloop           @ branch to next loop iteration
+
 writedone:
     MOV R0, #0              @ initialze index variable
+
 readloop:
-    CMP R0, #40            @ check to see if we are done iterating
+    CMP R0, #10            @ check to see if we are done iterating
     BEQ readdone            @ exit loop if done
     LDR R1, =a              @ get address of a
     LSL R2, R0, #2          @ multiply index*4 to get array offset
@@ -38,9 +41,11 @@ readloop:
     POP {R0}                @ restore register
     ADD R0, R0, #1          @ increment index
     B   readloop            @ branch to next loop iteration
+
 readdone:
     B _exit                 @ exit if done
     
+
 _exit:  
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
