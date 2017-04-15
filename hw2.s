@@ -86,5 +86,5 @@ _printf:
 a:              .skip       40
 printf_str:     .asciz      "a[%d] = %d\n"
 printf_max:	.asciz	"max = %d\n"
-printf_sum:	.asciz 	"sum = %d\n"
+printf_min:	.asciz 	"min = %d\n"
 exit_str:       .ascii      "Terminating program.\n"
