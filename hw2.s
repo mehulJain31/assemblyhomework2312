@@ -5,7 +5,7 @@ main:
     MOV R0, #0              @ initialze index variable
 
 writeloop:
-    CMP R0, #100            @ check to see if we are done iterating
+    CMP R0, #10            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
     LDR R1, =a              @ get address of a
     LSL R2, R0, #2          @ multiply index*4 to get array offset
