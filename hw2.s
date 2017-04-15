@@ -11,10 +11,15 @@ writeloop:
     LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
     STR R2, [R2]            @ write the address of a[i] to a[i]
+    CMP R9,R0               @ for minimum
+    MOVLT R9,R0             @store the value
+    CMP R2,R0               @find the max
+    MOVGT R2,R0             @store max
     ADD R0, R0, #1          @ increment index
     B   writeloop           @ branch to next loop iteration
 
 writedone:
+    PUSH {R2}
     MOV R0, #0              @ initialze index variable
 
 readloop:
@@ -37,8 +42,29 @@ readloop:
     B   readloop            @ branch to next loop iteration
 
 readdone:
-    B _exit                 @ exit if done
-    
+   POP {R2}
+	MOV R1,R2
+	BL _min
+	MOV R1,R8
+	BL _max
+	B _exit     @exit if done
+
+  
+  
+ _max:
+   PUSH {LR}
+	LDR R0, =printf_max
+	BL printf
+	POP {PC}
+   
+   
+_min:
+    PUSH {LR}
+	LDR R0, =printf_min
+	BL printf
+	POP {PC}
+   
+   
 _exit:  
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
@@ -59,4 +85,6 @@ _printf:
 .balign 4
 a:              .skip       40
 printf_str:     .asciz      "a[%d] = %d\n"
+printf_max:	.asciz	"max = %d\n"
+printf_sum:	.asciz 	"sum = %d\n"
 exit_str:       .ascii      "Terminating program.\n"
