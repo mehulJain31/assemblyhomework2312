@@ -4,7 +4,7 @@
 main:
     BL _seedrand            @ seed random number generator with current time
     MOV R8,#0
-    MOV R4,#1
+    MOV R4,#100
     LSL R4,R4,#4
     MOV R0, #0              @ initialze index variable
 
