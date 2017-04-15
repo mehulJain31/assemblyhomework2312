@@ -45,7 +45,7 @@ readdone:
    POP {R2}
 	MOV R1,R2
 	BL _min
-	MOV R1,R8
+	MOV R1,R9
 	BL _max
 	B _exit     @exit if done
 
