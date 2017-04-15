@@ -2,28 +2,26 @@
 .func main
    
 main:
+    BL _seedrand            @ seed random number generator with current time
     MOV R0, #0              @ initialze index variable
-
 writeloop:
-    CMP R0, #10             @ check to see if we are done iterating
+    CMP R0, #40            @ check to see if we are done iterating
     BEQ writedone           @ exit loop if done
     LDR R1, =a              @ get address of a
     LSL R2, R0, #2          @ multiply index*4 to get array offset
     ADD R2, R1, R2          @ R2 now has the element address
-    STR R2, [R2]            @ write the address of a[i] to a[i]
-    CMP R9,R0               @ for minimum
-    MOVLT R9,R0             @store the value
-    CMP R2,R0               @find the max
-    MOVGT R2,R0             @store max
+    PUSH {R0}               @ backup iterator before procedure call
+    PUSH {R2}               @ backup element address before procedure call
+    BL _getrand             @ get a random number
+    POP {R2}                @ restore element address
+    STR R0, [R2]            @ write the address of a[i] to a[i]
+    POP {R0}                @ restore iterator
     ADD R0, R0, #1          @ increment index
     B   writeloop           @ branch to next loop iteration
-
 writedone:
-    PUSH {R2}
     MOV R0, #0              @ initialze index variable
-
 readloop:
-    CMP R0, #10            @ check to see if we are done iterating
+    CMP R0, #40            @ check to see if we are done iterating
     BEQ readdone            @ exit loop if done
     LDR R1, =a              @ get address of a
     LSL R2, R0, #2          @ multiply index*4 to get array offset
@@ -40,31 +38,9 @@ readloop:
     POP {R0}                @ restore register
     ADD R0, R0, #1          @ increment index
     B   readloop            @ branch to next loop iteration
-
 readdone:
-   POP {R2}
-	MOV R1,R2
-	BL _min
-	MOV R1,R9
-	BL _max
-	B _exit     @exit if done
-
-  
-  
- _max:
-   PUSH {LR}
-	LDR R0, =printf_max
-	BL printf
-	POP {PC}
-   
-   
-_min:
-    PUSH {LR}
-	LDR R0, =printf_min
-	BL printf
-	POP {PC}
-   
-   
+    B _exit                 @ exit if done
+    
 _exit:  
     MOV R7, #4              @ write syscall, 4
     MOV R0, #1              @ output stream to monitor, 1
@@ -79,12 +55,25 @@ _printf:
     LDR R0, =printf_str     @ R0 contains formatted string address
     BL printf               @ call printf
     POP {PC}                @ restore the stack pointer and return
+    
+_seedrand:
+    PUSH {LR}               @ backup return address
+    MOV R0, #0              @ pass 0 as argument to time call
+    BL time                 @ get system time
+    MOV R1, R0              @ pass sytem time as argument to srand
+    BL srand                @ seed the random number generator
+    POP {PC}                @ return 
+    
+_getrand:
+    PUSH {LR}               @ backup return address
+    BL rand                 @ get a random number
+    POP {PC}                @ return 
    
 .data
 
 .balign 4
 a:              .skip       40
 printf_str:     .asciz      "a[%d] = %d\n"
-printf_max:	.asciz	"max = %d\n"
-printf_min:	.asciz 	"min = %d\n"
+debug_str:
+.asciz "R%-2d   0x%08X  %011d \n"
 exit_str:       .ascii      "Terminating program.\n"
