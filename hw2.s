@@ -38,10 +38,10 @@ readloop:
     POP {R2}                @ restore register
     POP {R1}                @ restore register
     POP {R0}                @ restore register
-    CMP R8,R0	             @if R2 < input
-	 MOVLT R8,R0
-	 CMP R2,R0	              @if R3 > input 
-	 MOVGT R2,R0
+    CMP R8,R0	             @if  < input
+    MOVLT R8,R0
+    CMP R4,R0	              @if  > input 
+    MOVGT R4,R0
     ADD R0, R0, #1          @ increment index
     B   readloop            @ branch to next loop iteration
 
@@ -50,7 +50,7 @@ readdone:
 	BL _min
 	MOV R1,R8
 	BL _max
-    B _exit                 @ exit if done
+        B _exit                 @ exit if done
     
 
 _min:
