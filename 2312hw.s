@@ -53,7 +53,7 @@ readloop:
     B   readloop            @ branch to next loop iteration
 
 readdone:
-        MOV R1,R2
+        MOV R1,R4
 	BL _min
 	MOV R1,R8
 	BL _max
