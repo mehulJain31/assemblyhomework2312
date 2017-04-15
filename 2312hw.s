@@ -17,14 +17,15 @@ writeloop:
     PUSH {R2}               @ backup element address before procedure call
     BL _getrand             @ get a random number
     LSR R0,R0,#24
+     CMP R8,R0	             @if  < input
+    MOVLT R8,R0
+    CMP R4,R0	              @if  > input 
+    MOVGT R4,R0
    
     POP {R2}                @ restore element address
     STR R0, [R2]            @ write the address of a[i] to a[i]
     POP  {R0}
-    CMP R8,R0	             @if  < input
-    MOVLT R8,R0
-    CMP R4,R0	              @if  > input 
-    MOVGT R4,R0                @ restore iterator
+                   @ restore iterator
     
     ADD R0, R0, #1          @ increment index
     B   writeloop           @ branch to next loop iteration
