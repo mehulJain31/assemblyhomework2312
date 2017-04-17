@@ -17,7 +17,7 @@ writeloop:
     PUSH {R0}               @ backup iterator before procedure call
     PUSH {R2}               @ backup element address before procedure call
     BL _getrand             @ get a random number
-    LSR R0,R0,#20
+    LSR R0,R0,#21
      CMP R8,R0	             @if  < input
     MOVLT R8,R0
     CMP R4,R0	              @if  > input 
