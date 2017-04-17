@@ -106,8 +106,8 @@ _getrand:
 .balign 4
 a:              .skip       40
 printf_str:     .asciz      "a[%d] = %d\n"
-printf_max:     .asciz      "max = %d\n"
-printf_min:     .asciz      "min = %d\n"
+printf_max:     .asciz      "Maximum Value = %d\n"
+printf_min:     .asciz      "Minimum Value = %d\n"
 debug_str:
 .asciz "R%-2d   0x%08X  %011d \n"
 exit_str:       .ascii      "Terminating program.\n"
