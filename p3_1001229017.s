@@ -18,3 +18,8 @@ main:
     LDR R0, [SP]                         @ load value at SP into R0
     ADD SP, SP, #4                       @ restore the stack pointer
     MOV PC, R4                           @ return
+
+
+.data
+    format_str:	   .asciz	"%d"
+    
