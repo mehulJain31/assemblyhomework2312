@@ -29,15 +29,15 @@ main:
       
       CMP R1,#0
       MOVEQ R0,#1    @if n=0, return 1
-      POPEQ{PC}
+      POPEQ {PC}
       
       
       MOVLT R0,#0  @ if n<0 return 0
-      POPLT{PC}
+      POPLT {PC}
       
       CMP R2,#0      @ compare m with 0
       MOVEQ R0,#0
-      POPEQ{PC}
+      POPEQ {PC}
       
       
       PUSH {R1}
