@@ -7,14 +7,14 @@ main:
    BL _scanf            @take the first input
    MOV R1, R0           @first variable stored in R1
   
-  PUSH {R1}
+   PUSH {R1}           @ because R1 has initialized again in scanf
    BL _scanf           @call scanf for second input
    MOV R2, R0          @second variable stored in R2
    POP {R1}
    
    BL count_partitions @branch to the function  
    
-    MOV R3,R2
+    MOV R3,R2    @ for printing the variables
     MOV R2,R1
     MOV R1,R0
     
