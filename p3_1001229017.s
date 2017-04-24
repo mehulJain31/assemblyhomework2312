@@ -2,23 +2,15 @@
 .func main
 
 main:
-   BL _scanf           @take the first input
+   BL _scanf            @take the first input
    MOV R1, R0           @first variable stored in R1
   
  
    BL _scanf           @call scanf for second input
-   MOV R2, R0           @second variable stored in R2
+   MOV R2, R0          @second variable stored in R2
    
+   BL count_partitions @branch to the function  
    
-   PUSH {R1}
-   PUSH {R2}
-  
-  BL count_partitions @branch to the function  
-   
-  
-    POP {R2}
-    POP {R1}
-    
     MOV R3,R2
     MOV R2,R1
     MOV R1,R0
@@ -42,20 +34,20 @@ main:
       MOVEQ R0,#0
       POPEQ {PC}
       
-      PUSH {R1}      @last else with recursion
+      PUSH{R1}
       SUB R1,R1,R2
       BL count_partitions
-      POP {R1}
+      MOV R3,R0
+      POP{R1}
       
-      
-      PUSH {R2}
-      PUSH {R0}
+      PUSH{R2}
       SUB R2,R2,#1
       BL count_partitions
       ADD R0,R0,R3
-      POP {R2}
+      POP{R2}
       
-      POP {PC}
+      POP{PC}
+      
    
   _printf:
 	PUSH {LR}
