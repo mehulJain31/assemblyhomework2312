@@ -3,7 +3,6 @@
 
 main:
   
-  
    BL _scanf            @take the first input
    MOV R1, R0           @first variable stored in R1
   
@@ -16,12 +15,12 @@ main:
    BL count_partitions @branch to the function 
   
    MOV R3,R2    @ for printing the variables
-    MOV R2,R1
-    MOV R1,R0
+   MOV R2,R1
+   MOV R1,R0
     
-    BL _printf
+   BL _printf
     
-    B main                          @run the code again, as instructed in the homework
+   B main                          @run the code again, as instructed in the homework
    
    
    count_partitions:
@@ -47,11 +46,11 @@ main:
       PUSH {R0}
       
       
-      PUSH {R2}
+      PUSH {R2}                 @because R2 has to be same so as to be added to the return recursive function 
       SUB R2,R2,#1
       BL count_partitions
       POP {R2}
-      POP {R5}                   @
+      POP {R5}                   @ POP R5 so that it doesnt change and has correct value for R0
       ADD R0,R0,R5
       
       
@@ -75,11 +74,7 @@ main:
     POP {PC}                 @ return
     
   
-    
-
-
-
-.data
+ .data
     format_str:	   .asciz	"%d"
     printf_str:    .asciz      "There are %d partitions of %d using integers up to %d\n"
     
