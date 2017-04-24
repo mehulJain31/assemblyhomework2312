@@ -33,7 +33,7 @@ main:
    
   _printf:
     MOV R4, LR              @ store LR since printf call overwrites
-    LDR R0,R1,R2 =printf_str     @ R0 contains formatted string address
+    LDR R0, =printf_str     @ R0 contains formatted string address
     BL printf               @ call printf
     MOV PC, R4              @ return
   
@@ -50,5 +50,5 @@ main:
 
 .data
     format_str:	   .asciz	"%d"
-    printf_str:     .asciz      "There are %d partitions of %d using integers up to %d\n"
+    printf_str:     .asciz      "There are %d partitions of  using integers up to \n"
     
