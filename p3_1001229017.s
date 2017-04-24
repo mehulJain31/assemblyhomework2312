@@ -44,14 +44,16 @@ main:
       SUB R1,R1,R2
       BL count_partitions
       POP {R1}
-      MOV R3,R0
+      PUSH{R0}
       
       
       PUSH {R2}
       SUB R2,R2,#1
       BL count_partitions
+      POP{R2}
+      POP{R3}
       ADD R0,R0,R3
-      POP {R2}
+      
       
       POP {PC}
       
