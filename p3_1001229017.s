@@ -34,19 +34,19 @@ main:
       MOVEQ R0,#0
       POPEQ {PC}
       
-      PUSH{R1}
+      PUSH {R1}
       SUB R1,R1,R2
       BL count_partitions
       MOV R3,R0
-      POP{R1}
+      POP {R1}
       
-      PUSH{R2}
+      PUSH {R2}
       SUB R2,R2,#1
       BL count_partitions
       ADD R0,R0,R3
-      POP{R2}
+      POP {R2}
       
-      POP{PC}
+      POP {PC}
       
    
   _printf:
