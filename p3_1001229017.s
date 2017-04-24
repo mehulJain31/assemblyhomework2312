@@ -12,7 +12,7 @@ main:
   PUSH {R1}
    BL _scanf           @call scanf for second input
    MOV R2, R0           @second variable stored in R2
-   POP{R1}
+   POP {R1}
    
    PUSH {R1}
    PUSH {R2}
