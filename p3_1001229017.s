@@ -12,11 +12,12 @@ main:
    MOV R2, R0          @second variable stored in R2
    POP {R1}
    
+   
    BL count_partitions @branch to the function  
    
-    @MOV R3,R2    @ for printing the variables
-    @MOV R2,R1
-    @MOV R1,R0
+    MOV R3,R2    @ for printing the variables
+    MOV R2,R1
+    MOV R1,R0
     
     BL _printf
     
@@ -28,14 +29,14 @@ main:
       
       CMP R1,#0
       MOVEQ R0,#1    @if n=0, return 1
-      POPEQ {PC}
+      
       
       MOVLT R0,#0  @ if n<0 return 0
-      POPLT {PC}
+      
       
       CMP R2,#0      @ compare m with 0
       MOVEQ R0,#0
-      POPEQ {PC}
+      
       
       PUSH {R1}
       SUB R1,R1,R2
