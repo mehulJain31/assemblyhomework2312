@@ -14,13 +14,13 @@ main:
    
    BL count_partitions @branch to the function  
    
-    MOV R3,R2    @ for printing the variables
-    MOV R2,R1
-    MOV R1,R0
+    @MOV R3,R2    @ for printing the variables
+    @MOV R2,R1
+    @MOV R1,R0
     
     BL _printf
     
-    B main                          @run the code again
+    B main                          @run the code again, as instructed in the homework
    
    
    count_partitions:
@@ -72,5 +72,5 @@ main:
 
 .data
     format_str:	   .asciz	"%d"
-    printf_str:     .asciz      "There are %d partitions of %d using integers up to %d\n"
+    printf_str:    .asciz      "There are %d partitions of %d using integers up to %d\n"
     
