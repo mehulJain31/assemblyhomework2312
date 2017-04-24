@@ -5,19 +5,20 @@ main:
    PUSH {R3}
    PUSH {R4}
    PUSH {R5}
+  
    BL _scanf           @take the first input
    MOV R1, R0           @first variable stored in R1
-   
+  
+  PUSH {R1}
    BL _scanf           @call scanf for second input
    MOV R2, R0           @second variable stored in R2
+   POP{R1}
    
    PUSH {R1}
    PUSH {R2}
    BL count_partitions @branch to the function  
    
-   
   
-   
     POP {R2}
     POP {R1}
     
