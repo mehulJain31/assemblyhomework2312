@@ -14,9 +14,11 @@ main:
    
    
    BL count_partitions @branch to the function 
+  
   PUSH {R1}
+  MOV R1,R0
   BL _printf1
-   POP {R1}
+  POP {R1}
    
     MOV R3,R2    @ for printing the variables
     MOV R2,R1
