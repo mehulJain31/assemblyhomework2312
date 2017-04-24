@@ -51,8 +51,8 @@ main:
       SUB R2,R2,#1
       BL count_partitions
       POP {R2}
-      POP {R3}
-      ADD R0,R0,R3
+      POP {R5}                   @
+      ADD R0,R0,R5
       
       
       POP {PC}
