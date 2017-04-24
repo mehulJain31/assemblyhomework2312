@@ -13,7 +13,10 @@ main:
    POP {R1}
    
    
-   BL count_partitions @branch to the function  
+   BL count_partitions @branch to the function 
+  PUSH {R1}
+  BL _printf1
+   POP {R1}
    
     MOV R3,R2    @ for printing the variables
     MOV R2,R1
@@ -70,10 +73,19 @@ main:
     LDR R0, [SP]            @ load value at SP into R0
     ADD SP, SP, #4          @ restore the stack pointer
     POP {PC}                 @ return
+    
+    _printf1:
+    MOV R4, LR              @ store LR since printf call overwrites
+    LDR R0, =printf_str1     @ R0 contains formatted string address
+    MOV R1, R1              @ R1 contains printf argument (redundant line)
+    BL printf               @ call printf
+    MOV PC, R4              @ return
+    
 
 
 
 .data
     format_str:	   .asciz	"%d"
     printf_str:    .asciz      "There are %d partitions of %d using integers up to %d\n"
+    printf_str1:    .asciz      " %d "
     
