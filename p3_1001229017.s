@@ -2,6 +2,7 @@
 .func main
 
 main:
+   PUSH {R3}
    BL _scanf           @take the first input
    MOV R1, R0           @first variable stored in R1
    
@@ -24,7 +25,7 @@ main:
     
     BL _printf
     
-    
+    POP {R3}
     B main                          @run the code again
    
    
