@@ -18,7 +18,10 @@ main:
     POP {R2}
     POP {R1}
     
+    MOV R3,R2
+    MOV R2,R1
     MOV R1,R0
+    
     BL _printf
     
     
@@ -74,5 +77,5 @@ main:
 
 .data
     format_str:	   .asciz	"%d"
-    printf_str:     .asciz      "There are %d partitions of  using integers up to \n"
+    printf_str:     .asciz      "There are %d partitions of %d using integers up to %d\n"
     
