@@ -19,6 +19,7 @@ main:
     POP {R1}
     
     MOV R1,R0
+    BL _printf
     
     
     B main                          @run the code again
