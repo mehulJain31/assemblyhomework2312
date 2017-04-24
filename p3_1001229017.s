@@ -6,10 +6,18 @@ main:
    MOV R1,R0           @first variable stored in R1
    BL _scanf           @call scanf for second input
    MOV R2,R0           @second variable stored in R2
-   BL _countpartitions @branch to the function   
+   BL count_partitions @branch to the function   
    
-   
-  BL _counterpartitions:
+   count_partitions:
+      CMP R1,#0
+      MOVEQ R0,#1    @if n=0, return 1
+      MOVLT R0,#0  @ if n<0 return 0
+      
+      CMP R2,#0      @ compare m with 0
+      MOVEQ R0,#0
+      
+                      @last else with recursion
+ 
    
   
   _scanf:
