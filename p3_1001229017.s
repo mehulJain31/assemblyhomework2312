@@ -19,17 +19,17 @@ main:
       CMP R2,#0      @ compare m with 0
       MOVEQ R0,#0
       
-      PUSH{R1}      @last else with recursion
+      PUSH {R1}      @last else with recursion
       SUB R1,R1,R2
       BL count_partitions
       MOV R3,R0
-      POP{R1}
-      PUSH{R2}
+      POP {R1}
+      PUSH {R2}
       SUB R2,R2,#1
       BL count_partitions
       ADD R0,R0,R3
-      POP{R2}
-      POP{PC}
+      POP {R2}
+      POP {PC}
    
   _printf:
     MOV R4, LR              @ store LR since printf call overwrites
