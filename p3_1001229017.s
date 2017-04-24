@@ -7,12 +7,12 @@ main:
    BL _scanf           @call scanf for second input
    MOV R2, R0           @second variable stored in R2
    BL count_partitions @branch to the function  
-   MOV R4,R0
    Bl _printf
    
    
    count_partitions:
       PUSH {LR}
+      
       CMP R1,#0
       MOVEQ R0,#1    @if n=0, return 1
       MOVLT R0,#0  @ if n<0 return 0
@@ -25,11 +25,14 @@ main:
       BL count_partitions
       MOV R3,R0
       POP {R1}
-      PUSH {R2}
+      
+
+      PUSH{R0}
       SUB R2,R2,#1
       BL count_partitions
       ADD R0,R0,R3
       POP {R2}
+      
       POP {PC}
    
   _printf:
