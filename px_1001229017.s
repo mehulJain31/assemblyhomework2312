@@ -18,7 +18,7 @@ LOOP:
 	ADD R5,R5,R4
 	STR R0, [R5]
 	ADD R1,R1,#1
-	BL _exit
+	B LOOP
 
 done:	PUSH {R2}
 	MOV  R0,#0
