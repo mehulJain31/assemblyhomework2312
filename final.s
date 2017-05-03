@@ -2,7 +2,7 @@
 	.func main
 
 main:
-	MOV R8,#0
+	MOV R7,#0
 	MOV R1,#0
 	MOV R2,#255
 writeloop:
@@ -63,11 +63,11 @@ _scanf:
 	MOV PC,R4
 
 _exit:
-	MOV  R8,#4
+	MOV  R7,#4
 	MOV R0,#1
 	MOV R2,#21
 	SWI 0
-	MOV R8,#1
+	MOV R7,#1
 	SWI 0
 
 
