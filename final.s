@@ -2,15 +2,15 @@
 	.func main
 
 main:
-	MOV R7,#0
+	MOV R8,#0
 	MOV R1,#0
 	MOV R2,#255
-LOOP:
-	CMP R1,#10	@if R1 = 10 exit
-	BEQ done	@if 10 exit
+writeloop:
+	CMP R1,#10	
+	BEQ doneloop	
 	PUSH {R1}
 	PUSH {R2}
-	BL _scanf	@GET INPUT
+	BL _scanf	@ Take user input
 	POP {R2}
 	POP {R1}
 	LDR R4, =a
@@ -18,13 +18,14 @@ LOOP:
 	ADD R5,R5,R4
 	STR R0, [R5]
 	ADD R1,R1,#1
-	B LOOP
+	B writeloop
 
-done:	PUSH {R2}
+doneloop:	
+	PUSH {R2}
 	MOV  R0,#0
-read:
+readloop:
 	CMP R0,#10
-	BEQ rdone
+	BEQ readdone
 	LDR R1,=a
 	LSL R2,R0,#2
 	ADD R2,R1,R2
@@ -39,25 +40,15 @@ read:
 	POP {R1}
 	POP {R0}
 	ADD R0,R0,#1
-	B read
+	B readloop
 
-
-
-rdone:
+readdone:
 	POP {R2}
 	B _exit
 
-_exit:
-	MOV  R7,#4
-	MOV R0,#1
-	MOV R2,#21
-	SWI 0
-	MOV R7,#1
-	SWI 0
-
 _printf:
 	PUSH {LR}
-	LDR R0,=print_str
+	LDR R0,=printf_str
 	BL printf
 	POP {PC}
 
@@ -71,9 +62,18 @@ _scanf:
 	ADD SP,SP,#4
 	MOV PC,R4
 
+_exit:
+	MOV  R8,#4
+	MOV R0,#1
+	MOV R2,#21
+	SWI 0
+	MOV R8,#1
+	SWI 0
+
+
 .data
 .balign 4
 a:		.skip	40
-print_str:	.asciz	"a[%d] = %d\n"
-exit_str:	.asciz	"Exit"
+printf_str:	.asciz	"a[%d] = %d\n"
+exit_str:	.asciz   "Terminating Program"
 format_str:	.asciz	"%d"
