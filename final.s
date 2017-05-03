@@ -13,11 +13,6 @@ LOOP:
 	BL _scanf	@GET INPUT
 	POP {R2}
 	POP {R1}
-	CMP R8,R0	@if R2 < input
-	MOVLT R8,R0
-	CMP R2,R0	@if R3 > input 
-	MOVGT R2,R0
-	ADD R7,R7,R0
 	LDR R4, =a
 	LSL R5,R1,#2
 	ADD R5,R5,R4
@@ -50,15 +45,7 @@ read:
 
 rdone:
 	POP {R2}
-	MOV R1,R2
-	BL _pmin
-	MOV R1,R8
-	BL _pmax
-	MOV R1,R7
-	BL _psum
 	B _exit
-
-
 
 _exit:
 	MOV  R7,#4
@@ -73,21 +60,7 @@ _printf:
 	LDR R0,=print_str
 	BL printf
 	POP {PC}
-_pmin:
-	PUSH {LR}
-	LDR R0,=print_min
-	BL printf
-	POP {PC}
-_pmax:
-	PUSH {LR}
-	LDR R0, =print_max
-	BL printf
-	POP {PC}
-_psum:
-	PUSH {LR}
-	LDR R0,=print_sum
-	BL printf
-	POP {PC}
+
 _scanf:
 	MOV R4,LR
 	SUB SP,SP,#4
@@ -104,6 +77,3 @@ a:		.skip	40
 print_str:	.asciz	"a[%d] = %d\n"
 exit_str:	.asciz	"Exit"
 format_str:	.asciz	"%d"
-print_min:	.asciz  "min = %d\n"
-print_max:	.asciz	"max = %d\n"
-print_sum:	.asciz 	"sum = %d\n"
