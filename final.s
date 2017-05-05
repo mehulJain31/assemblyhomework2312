@@ -23,6 +23,8 @@ writeloop:
 doneloop:	
 	PUSH {R2}
 	MOV  R0,#0
+	
+
 readloop:
 	CMP R0,#10
 	BEQ readdone
@@ -44,7 +46,7 @@ readloop:
 
 readdone:
 	POP {R2}
-	B _exit
+	
 
 _printf:
 	PUSH {LR}
