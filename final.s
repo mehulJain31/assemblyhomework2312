@@ -96,7 +96,7 @@ _scanf1:
 .balign 4
 a:		.skip	40
 printf_str:	.asciz	"a[%d] = %d\n"
-printf_str1:	.asciz	"Enter a search element"
+printf_str1:	.asciz   "ENTER A SEARCH VALUE:"
 format_str1:	.asciz	"%d"
 exit_str:	.asciz   "Terminating Program"
 format_str:	.asciz	"%d"
