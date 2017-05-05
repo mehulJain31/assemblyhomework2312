@@ -46,9 +46,9 @@ readloop:
 
 readdone:
 	POP {R2}
+	BL _scanf1
 	
 	
-
 _printf:
 	PUSH {LR}
 	LDR R0,=printf_str
@@ -65,6 +65,7 @@ _scanf:
 	ADD SP,SP,#4
 	MOV PC,R4
 
+
 _exit:
 	MOV  R7,#4
 	MOV R0,#1
@@ -73,10 +74,21 @@ _exit:
 	MOV R7,#1
 	SWI 0
 
+_scanf1:
+	MOV R4,LR
+	SUB SP,SP,#4
+	LDR R0,=format_str1
+	MOV R1,SP
+	BL scanf
+	LDR R0, [SP]
+	ADD SP,SP,#4
+	MOV PC,R4
+
 
 .data
 .balign 4
 a:		.skip	40
 printf_str:	.asciz	"a[%d] = %d\n"
+format_str1     .asciz  "Enter a search value:"
 exit_str:	.asciz   "Terminating Program"
 format_str:	.asciz	"%d"
