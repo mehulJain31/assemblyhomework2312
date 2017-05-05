@@ -46,12 +46,19 @@ readloop:
 
 readdone:
 	POP {R2}
+	BL _printf1
 	BL _scanf1
 	
 	
 _printf:
 	PUSH {LR}
 	LDR R0,=printf_str
+	BL printf
+	POP {PC}
+	
+_printf1:
+	PUSH {LR}
+	LDR R0,=printf_str1
 	BL printf
 	POP {PC}
 
@@ -89,6 +96,9 @@ _scanf1:
 .balign 4
 a:		.skip	40
 printf_str:	.asciz	"a[%d] = %d\n"
+printf_str1:	.asciz	"Enter a search element"
 format_str1:	.asciz	"%d"
 exit_str:	.asciz   "Terminating Program"
 format_str:	.asciz	"%d"
+not_str:        .asciz  " Sorry, the element is not present in the array"
+
