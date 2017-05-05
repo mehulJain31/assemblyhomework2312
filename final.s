@@ -1,5 +1,5 @@
 .global main
-	.func main
+.func main
 
 main:
 	MOV R7,#0
