@@ -92,10 +92,11 @@ _printf1:
 	PUSH {LR}
 	LDR R0,=printf_str1
 	BL printf
-	BL readloop1
 	POP {PC}
-	
-	
+	BL search
+
+search: 
+	BL readloop1
 
 _scanf:
 	MOV R4,LR
