@@ -79,7 +79,7 @@ notfound:
 
 readdone1:
 	POP {R2}
-	BL _exit
+	BL readloop1
 	
 	
 _printf:
@@ -93,10 +93,7 @@ _printf1:
 	LDR R0,=printf_str1
 	BL printf
 	POP {PC}
-	BL search
-
-search: 
-	BL readloop1
+	
 
 _scanf:
 	MOV R4,LR
