@@ -24,7 +24,6 @@ doneloop:
 	PUSH {R2}
 	MOV  R0,#0
 	
-
 readloop:
 	CMP R0,#10
 	BEQ readdone
@@ -48,6 +47,38 @@ readdone:
 	POP {R2}
 	BL _printf1
 	BL _scanf1
+	
+readloop:
+	CMP R0,#10
+	BEQ readdone
+	LDR R1,=a
+	LSL R2,R0,#2
+	ADD R2,R1,R2
+	LDR R1, [R2]
+	PUSH {R0}
+	PUSH {R1}
+	PUSH {R2}
+	MOV R2,R1
+	MOV R1,R0
+	CMP R8,R0
+	MOVEQ BL_printf
+	BL notfound
+	POP {R2}
+	POP {R1}
+	POP {R0}
+	ADD R0,R0,#1
+	B readloop
+
+notfound:
+	PUSH {LR}
+	LDR R0,=not_str
+	BL printf
+	POP {PC}
+	
+
+readdone:
+	POP {R2}
+	BL _exit
 	
 	
 _printf:
@@ -88,6 +119,7 @@ _scanf1:
 	MOV R1,SP
 	BL scanf
 	LDR R0, [SP]
+	MOV R8,R0
 	ADD SP,SP,#4
 	MOV PC,R4
 
