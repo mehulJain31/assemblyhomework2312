@@ -49,7 +49,7 @@ readdone:
 	BL _scanf1
 
 MOV R0,#0
-MOV R9,#0
+@MOV R9,#0
 readloop1:
 	CMP R0,#10
 	BEQ _exit
@@ -90,7 +90,7 @@ _printf2:
 	PUSH {LR}
 	LDR R0,=printf_str
 	BL printf
-	ADD R9,R9,#1
+	@ADD R9,R9,#1
 	POP {PC}
 	
 _printf1:
@@ -112,8 +112,8 @@ _scanf:
 
 
 _exit:
-	CMP R9,#0
-	BEQ notfound
+	@CMP R9,#0
+	@BEQ notfound
 	MOV  R7,#4
 	MOV R0,#1
 	MOV R2,#21
