@@ -48,9 +48,10 @@ readdone:
 	BL _printf1
 	BL _scanf1
 
-MOV R0,#0
+
 readloop1:
-	CMP R0,#100
+	MOV R0,#0
+	CMP R0,#10
 	BEQ _exit
 	LDR R1,=a
 	LSL R2,R0,#2
