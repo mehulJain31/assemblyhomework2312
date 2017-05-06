@@ -49,7 +49,7 @@ readdone:
 	BL _scanf1
 
 MOV R0,#0
-@MOV R9,#0
+MOV R9,#0
 readloop1:
 	CMP R0,#10
 	BEQ _exit
@@ -63,12 +63,20 @@ readloop1:
 	MOV R2,R1
 	MOV R1,R0
 	CMP R8,R2
-	BEQ _printf2
+	BNE skip
+	ADD R9,R9,#1
 	POP {R2}
 	POP {R1}
 	POP {R0}
+	@ADD R0,R0,#1
+	@B readloop1
+
+skip:
 	ADD R0,R0,#1
 	B readloop1
+	CMP R9,#0
+	BNE notfound
+	
 
 notfound:
 	PUSH {LR}
