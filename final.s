@@ -67,7 +67,7 @@ readloop1:
 	POP {R1}
 	POP {R0}
 	ADD R0,R0,#1
-	B readloop
+	B readloop1
 
 notfound:
 	PUSH {LR}
