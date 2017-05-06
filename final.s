@@ -61,8 +61,8 @@ readloop1:
 	MOV R2,R1
 	MOV R1,R0
 	CMP R8,R2
-	BL _printf
-	BL notfound
+	BEQ _printf
+	@BL notfound
 	POP {R2}
 	POP {R1}
 	POP {R0}
