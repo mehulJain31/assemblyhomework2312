@@ -50,7 +50,7 @@ readdone:
 
 MOV R0,#0
 readloop1:
-	CMP R0,#10
+	CMP R9,#10
 	BEQ _exit
 	LDR R1,=a
 	LSL R2,R0,#2
@@ -67,7 +67,7 @@ readloop1:
 	POP {R2}
 	POP {R1}
 	POP {R0}
-	@ ADD R0,R0,#1
+	ADD R9,R9,#1
 	B readloop1
 
 notfound:
