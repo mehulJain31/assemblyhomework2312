@@ -63,6 +63,7 @@ readloop1:
 	MOV R1,R0
 	CMP R8,R2
 	BEQ _printf
+	B readloop1
 	@BNE notfound
 	POP {R2}
 	POP {R1}
@@ -93,7 +94,7 @@ _printf1:
 	LDR R0,=printf_str1
 	BL printf
 	POP {PC}
-	BL readloop1
+	
 
 _scanf:
 	MOV R4,LR
