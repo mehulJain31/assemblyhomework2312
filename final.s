@@ -92,8 +92,9 @@ _printf1:
 	PUSH {LR}
 	LDR R0,=printf_str1
 	BL printf
-	POP {PC}
 	BL readloop1
+	POP {PC}
+	
 	
 
 _scanf:
