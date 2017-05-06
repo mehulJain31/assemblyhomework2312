@@ -93,6 +93,7 @@ _printf1:
 	LDR R0,=printf_str1
 	BL printf
 	POP {PC}
+	BL readloop1
 	
 
 _scanf:
