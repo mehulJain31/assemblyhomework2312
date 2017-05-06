@@ -60,7 +60,7 @@ readloop1:
 	PUSH {R2}
 	MOV R2,R1
 	MOV R1,R0
-	CMP R8,R0
+	CMP R8,R2
 	BL _printf
 	BL notfound
 	POP {R2}
@@ -132,5 +132,4 @@ printf_str1:	.asciz   "ENTER A SEARCH VALUE:"
 format_str1:	.asciz	"%d"
 exit_str:	.asciz   "Terminating Program"
 format_str:	.asciz	"%d"
-not_str:        .asciz  "That value does not exist in the array"
-
+not_str:        .asciz  "That value does not exist in the array\n"
