@@ -63,20 +63,14 @@ readloop1:
 	MOV R2,R1
 	MOV R1,R0
 	CMP R8,R2
-	BNE skip
+	BEQ _printf
 	ADD R9,R9,#1
 	POP {R2}
 	POP {R1}
 	POP {R0}
-	@ADD R0,R0,#1
-	@B readloop1
-
-skip:
 	ADD R0,R0,#1
 	B readloop1
-	CMP R9,#0
-	BNE notfound
-	
+
 
 notfound:
 	PUSH {LR}
@@ -94,12 +88,6 @@ _printf:
 	BL printf
 	POP {PC}
 
-_printf2:
-	PUSH {LR}
-	LDR R0,=printf_str
-	BL printf
-	@ADD R9,R9,#1
-	POP {PC}
 	
 _printf1:
 	PUSH {LR}
