@@ -2,7 +2,7 @@
 .func main
 
 main:
-	MOV R1,#0
+	MOV R0,#0
 writeloop:
 	CMP R1,#10	
 	BEQ doneloop	
@@ -44,11 +44,10 @@ readloop:
 readdone:
 	POP {R2}
 	BL _printf1
-	BL _scanf1
-	MOV R0,#0
+	BL _scanf
 	MOV R8,R0
-
-
+	MOV R0,#0
+	
 readloop1:
 	CMP R0,#10
 	BEQ readdone1
