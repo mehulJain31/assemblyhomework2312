@@ -62,9 +62,9 @@ readloop1:
 	PUSH {R0}
 	PUSH {R1}
 	PUSH {R2}
-	MOV R2,R1
-	MOV R1,R0
-	BL _printf
+	MOVEQ R2,R1
+	MOVEQ R1,R0
+	BLEQ _printf
 	POP {R2}
 	POP {R1}
 	POP {R0}
