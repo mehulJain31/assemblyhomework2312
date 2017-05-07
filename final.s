@@ -2,9 +2,7 @@
 .func main
 
 main:
-	MOV R7,#0
 	MOV R1,#0
-	MOV R2,#255
 writeloop:
 	CMP R1,#10	
 	BEQ doneloop	
@@ -49,10 +47,9 @@ readdone:
 	BL _scanf1
 
 MOV R0,#0
-MOV R9,#0
 readloop1:
 	CMP R0,#10
-	BEQ _exit
+	BEQ _readdone1
 	LDR R1,=a
 	LSL R2,R0,#2
 	ADD R2,R1,R2
