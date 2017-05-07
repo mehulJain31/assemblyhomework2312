@@ -2,7 +2,7 @@
 .func main
 
 main:
-	MOV R0,#0
+	MOV R1,#0
 writeloop:
 	CMP R1,#10	
 	BEQ doneloop	
