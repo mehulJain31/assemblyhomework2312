@@ -2,7 +2,7 @@
 .func main
 
 main:
-	MOV R1,#0
+	
 writeloop:
 	CMP R1,#10	
 	BEQ doneloop	
@@ -55,7 +55,7 @@ readloop1:
 	LSL R2,R0,#2
 	ADD R2,R1,R2
 	LDR R1, [R2]
-	PUSH {R8}
+	PUSH {R8}      @ push search value into th stack
 	CMP R1,R8      @compare array values to the search value
 	ADDEQ R9,R9,#1 @ means value is in the array    
 	PUSH {R9}
@@ -74,9 +74,9 @@ readloop1:
 	B readloop1  @loop till 10 elements
 	
 readdone1:
-	CMP R9,#0    @ if R9=0 print not found
-	BLEQ not_found
-	POP {R2}
+	CMP R9,#0      @ if R9=0 print not found
+	BLEQ not_found @ branch for printing not found
+ 	POP {R2}
 	B _exit	
 
 not_found:
@@ -103,17 +103,6 @@ _scanf:
 	MOV R4,LR
 	SUB SP,SP,#4
 	LDR R0,=format_str
-	MOV R1,SP
-	BL scanf
-	LDR R0, [SP]
-	ADD SP,SP,#4
-	MOV PC,R4
-
-_scanf1:
-	
-	MOV R4,LR
-	SUB SP,SP,#4
-	LDR R0,=format_str1
 	MOV R1,SP
 	BL scanf
 	LDR R0, [SP]
