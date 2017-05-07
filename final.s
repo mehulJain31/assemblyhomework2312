@@ -58,18 +58,18 @@ readloop1:
 	PUSH {R8}
 	CMP R1,R8
 	ADDEQ R9,R9,#1
-	PUSHEQ {R9}
-	PUSHEQ {R0}
-	PUSHEQ {R1}
-	PUSHEQ {R2}
+	PUSH {R9}
+	PUSH {R0}
+	PUSH {R1}
+	PUSH {R2}
 	MOVEQ R2,R1
 	MOVEQ R1,R0
 	BLEQ _printf
-	POPEQ {R2}
-	POPEQ {R1}
-	POPEQ {R0}
-	POPEQ {R9}
-	POPEQ {R8}
+	POP {R2}
+	POP {R1}
+	POP {R0}
+	POP {R9}
+	POP {R8}
 	ADD R0,R0,#1
 	B readloop1
 	
