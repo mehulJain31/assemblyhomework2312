@@ -51,7 +51,7 @@ readdone:
 
 readloop1:
 	CMP R0,#10
-	BEQ _readdone1
+	BEQ readdone1
 	LDR R1,=a
 	LSL R2,R0,#2
 	ADD R2,R1,R2
@@ -75,7 +75,7 @@ readloop1:
 	
 readdone1:
 	CMP R9,#0
-	BLEQ _notfound
+	BLEQ notfound
 	POP {R2}
 	BL _exit	
 
