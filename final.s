@@ -45,6 +45,7 @@ readdone:
 	POP {R2}
 	BL _printf1
 	BL _scanf1
+	MOV R8,R0
 
 MOV R0,#0
 readloop1:
@@ -61,9 +62,9 @@ readloop1:
 	PUSH {R0}
 	PUSH {R1}
 	PUSH {R2}
-	MOVEQ R2,R1
-	MOVEQ R1,R0
-	BLEQ _printf
+	MOV R2,R1
+	MOV R1,R0
+	BL _printf
 	POP {R2}
 	POP {R1}
 	POP {R0}
@@ -77,6 +78,7 @@ readdone1:
 	BLEQ _notfound
 	POP {R2}
 	BL _exit	
+
 notfound:
 	PUSH {LR}
 	LDR R0,=not_str
@@ -125,7 +127,6 @@ _scanf1:
 	MOV R1,SP
 	BL scanf
 	LDR R0, [SP]
-	MOV R8,R0
 	ADD SP,SP,#4
 	MOV PC,R4
 
