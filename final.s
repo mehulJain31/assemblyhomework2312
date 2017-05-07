@@ -48,7 +48,7 @@ readdone:
 	MOV R8,R0
 	MOV R0,#0
 	
-readloop1:
+readloop1:			@for searching the array
 	CMP R0,#10
 	BEQ readdone1
 	LDR R1,=a
@@ -76,7 +76,6 @@ readloop1:
 readdone1:
 	CMP R9,#0      @ if R9=0 print not found
 	BLEQ not_found @ branch for printing not found
- 	POP {R2}
 	B _exit	
 
 not_found:
@@ -91,14 +90,12 @@ _printf:
 	BL printf
 	POP {PC}
 
-	
 _printf1:
 	PUSH {LR}
 	LDR R0,=printf_str1
 	BL printf
 	POP {PC}
 	
-
 _scanf:
 	MOV R4,LR
 	SUB SP,SP,#4
