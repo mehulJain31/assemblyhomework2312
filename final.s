@@ -59,7 +59,6 @@ readloop1:
 	PUSH {R8}
 	CMP R1,R8
 	ADDEQ R9,R9,#1
-	PUSH{R9}
 	PUSH {R0}
 	PUSH {R1}
 	PUSH {R2}
