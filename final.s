@@ -45,9 +45,10 @@ readdone:
 	POP {R2}
 	BL _printf1
 	BL _scanf1
+	MOV R0,#0
 	MOV R8,R0
 
-MOV R0,#0
+
 readloop1:
 	CMP R0,#10
 	BEQ _readdone1
