@@ -64,12 +64,13 @@ readloop1:
 	MOV R1,R0
 	CMP R8,R2
 	BEQ _printf
-	ADD R9,R9,#1
+	ADD R0,R0,#1
+	B readloop1
 	POP {R2}
 	POP {R1}
 	POP {R0}
-	ADD R0,R0,#1
-	B readloop1
+	
+	
 
 
 notfound:
