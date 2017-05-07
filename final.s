@@ -78,7 +78,7 @@ readdone1:
 	@CMP R9,#0
 	@BLEQ notfound
 	POP {R2}
-	BL _exit	
+	B _exit	
 
 @notfound:
 	@PUSH {LR}
