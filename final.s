@@ -44,8 +44,8 @@ readloop:
 readdone:
 	POP {R2}
 	BL _printf1
-	BL _scanf1
-	   
+	BL _scanf
+	MOV R8,R0
 	MOV R0,#0
 	
 readloop1:
@@ -110,7 +110,7 @@ _scanf:
 	MOV PC,R4
 
 _scanf1:
-	MOV R8,R0
+	
 	MOV R4,LR
 	SUB SP,SP,#4
 	LDR R0,=format_str1
