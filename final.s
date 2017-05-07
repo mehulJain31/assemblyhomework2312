@@ -58,8 +58,8 @@ readloop1:
 	LDR R1, [R2]
 	PUSH {R8}
 	CMP R1,R8
-	ADDEQ R9,R9,#1
-	PUSHEQ {R9}
+	@ADDEQ R9,R9,#1
+	@PUSHEQ {R9}
 	PUSHEQ {R0}
 	PUSHEQ {R1}
 	PUSHEQ {R2}
@@ -69,22 +69,22 @@ readloop1:
 	POPEQ {R2}
 	POPEQ {R1}
 	POPEQ {R0}
-	POPEQ {R9}
+	@POPEQ {R9}
 	POPEQ {R8}
 	ADD R0,R0,#1
 	B readloop1
 	
 readdone1:
-	CMP R9,#0
-	BLEQ notfound
+	@CMP R9,#0
+	@BLEQ notfound
 	POP {R2}
 	BL _exit	
 
-notfound:
-	PUSH {LR}
-	LDR R0,=not_str
-	BL printf
-	POP {PC}
+@notfound:
+	@PUSH {LR}
+	@LDR R0,=not_str
+	@BL printf
+	@POP {PC}
 	
 
 	
