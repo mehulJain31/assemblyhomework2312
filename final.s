@@ -65,13 +65,13 @@ readloop1:			@for searching the array
 	MOVEQ R2,R1
 	MOVEQ R1,R0
 	BLEQ _printf  @print array value if found
-	POP {R2}
+	POP {R2}      @POP all PUSH
 	POP {R1}
 	POP {R0}
 	POP {R9}
 	POP {R8}
 	ADD R0,R0,#1
-	B readloop1  @loop till 10 elements
+	B readloop1   @loop till 10 elements
 	
 readdone1:
 	CMP R9,#0      @ if R9=0 print not found
@@ -120,6 +120,6 @@ a:		.skip	40
 printf_str:	.asciz	"a[%d] = %d\n"
 printf_str1:	.asciz   "ENTER A SEARCH VALUE: "
 format_str1:	.asciz	"%d"
-exit_str:	.asciz   "Terminating Program"
+exit_str:	.asciz   "Terminating Program.."
 format_str:	.asciz	"%d"
 not_str:        .asciz  "That value does not exist in the array\n"
